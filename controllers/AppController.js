@@ -29,6 +29,4 @@ class AppController {
   }
 }
 
-//export const status = getStatus.status;
-//export const stats = getStats.stats;
-module.exports = AppController;
+export default AppController;

@@ -8,17 +8,19 @@ class RedisClient {
   constructor() {
     this.client = redis.createClient();
     this.getAsync = promisify(this.client.get).bind(this.client);
+
     this.client.on('error', (error) => {
       console.log(`Redis client not connected to the server: ${error.message}`);
     });
+
     this.client.on('connect', () => {
-      //   console.log('Redis client connected to the server');
+      // console.log('Redis client connected to the server');
     });
   }
 
   /**
    * Checks if connection to Redis is Alive
-   * @return true if connection alive or false if not
+   * @return {boolean} true if connection alive or false if not
    */
   isAlive() {
     return this.client.connected;
@@ -56,4 +58,5 @@ class RedisClient {
 }
 
 const redisClient = new RedisClient();
-module.exports = redisClient;
+
+export default redisClient;
